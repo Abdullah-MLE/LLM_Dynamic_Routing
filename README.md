@@ -26,7 +26,7 @@ pip install -r requirements.txt
 ```bash
 python main.py
 
-streamlit run app.p
+streamlit run app.py
 ```
 
 https://github.com/AbdoElwahdh/Dynamic_Routing-/tree/Abdullah_dev

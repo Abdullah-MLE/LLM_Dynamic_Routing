@@ -20,12 +20,13 @@ class Config:
         self.MAX_RETRIES = 2
 
         self.COMPLEX_KEYWORDS = [
-            "explain", "analyze", "compare", "contrast", "evaluate",
-            "synthesize", "critique", "interpret", "discuss", "theorize"
+            "analyze", "compare", "contrast", "evaluate", "critique", 
+            "interpret", "discuss", "theorize", "synthesize", "examine",
+            "investigate", "assess", "review", "debate", "argue"
         ]
         self.SIMPLE_KEYWORDS = [
-            "what", "when", "where", "who", "how", "define", "list"
+            "what", "when", "where", "who", "how", "define", "list",
+            "name", "find", "show", "tell", "give", "provide"
         ]
 
 
-config = Config()

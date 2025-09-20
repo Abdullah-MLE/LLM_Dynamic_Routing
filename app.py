@@ -3,10 +3,9 @@ import json
 import os
 from datetime import datetime
 
-from router.router import QueryRouter
+from router.query_router import QueryRouter
 from evaluation.evaluator import Evaluator
-from models.response import QueryResponse
-from config import config
+from config import Config
 
 
 class DynamicRoutingUI:
@@ -14,6 +13,7 @@ class DynamicRoutingUI:
 
     def __init__(self):
         """Initialize the UI components"""
+        self.config = Config()
         self.router = QueryRouter()
         self.evaluator = Evaluator()
         self.setup_page_config()
@@ -35,11 +35,11 @@ class DynamicRoutingUI:
         model_provider = st.sidebar.selectbox(
             "Select Model Provider",
             ["gemini", "mock"],
-            index=0 if config.MODEL_PROVIDER == "gemini" else 1
+            index=0 if self.config.MODEL_PROVIDER == "gemini" else 1
         )
         
-        if model_provider != config.MODEL_PROVIDER:
-            config.MODEL_PROVIDER = model_provider
+        if model_provider != self.config.MODEL_PROVIDER:
+            self.config.MODEL_PROVIDER = model_provider
             self.router = QueryRouter()
             st.sidebar.success(f"Switched to {model_provider} mode")
         
@@ -55,15 +55,15 @@ class DynamicRoutingUI:
         st.sidebar.subheader("Cache Settings")
         cache_enabled = st.sidebar.checkbox(
             "Enable Cache",
-            value=config.CACHE_ENABLED
+            value=self.config.CACHE_ENABLED
         )
-        config.CACHE_ENABLED = cache_enabled
+        self.config.CACHE_ENABLED = cache_enabled
         
         # Current Settings Display
         st.sidebar.subheader("Current Settings")
-        st.sidebar.write(f"**Model Provider:** {config.MODEL_PROVIDER}")
+        st.sidebar.write(f"**Model Provider:** {self.config.MODEL_PROVIDER}")
         st.sidebar.write(f"**Model Level:** {model_level}")
-        st.sidebar.write(f"**Cache:** {'Enabled' if config.CACHE_ENABLED else 'Disabled'}")
+        st.sidebar.write(f"**Cache:** {'Enabled' if self.config.CACHE_ENABLED else 'Disabled'}")
         
         # Store model level for use in query processing
         st.session_state.model_level = model_level
@@ -104,13 +104,13 @@ class DynamicRoutingUI:
                     else:
                         # Use specific model level
                         response = self.router.model.generate(query, model_level)
-                        result = QueryResponse(
-                            query=query,
-                            response=response,
-                            complexity=model_level,
-                            model_name=self.router._get_model_name(model_level),
-                            cached=False
-                        )
+                        result = {
+                            "query": query,
+                            "response": response,
+                            "complexity": model_level,
+                            "model_name": self.router._get_model_name(model_level),
+                            "cached": False
+                        }
                     
                     # Stop timing
                     elapsed = self.evaluator.stop_timer()
@@ -120,7 +120,7 @@ class DynamicRoutingUI:
                     
                     # Response content
                     st.subheader("Response:")
-                    st.write(result.response)
+                    st.write(result["response"])
                     
                     # Details if requested
                     if show_details:
@@ -129,15 +129,15 @@ class DynamicRoutingUI:
                         details_col1, details_col2 = st.columns(2)
                         
                         with details_col1:
-                            st.write(f"**Query:** {result.query}")
-                            st.write(f"**Complexity:** {result.complexity}")
-                            st.write(f"**Model Used:** {result.model_name}")
+                            st.write(f"**Query:** {result['query']}")
+                            st.write(f"**Complexity:** {result['complexity']}")
+                            st.write(f"**Model Used:** {result['model_name']}")
                             st.write(f"**Level Mode:** {'Auto' if model_level == 'auto' else 'Manual'}")
                         
                         with details_col2:
-                            st.write(f"**From Cache:** {'Yes' if result.cached else 'No'}")
+                            st.write(f"**From Cache:** {'Yes' if result['cached'] else 'No'}")
                             st.write(f"**Processing Time:** {elapsed:.3f}s")
-                            st.write(f"**Response Length:** {len(result.response)} characters")
+                            st.write(f"**Response Length:** {len(result['response'])} characters")
                     
                 except Exception as e:
                     st.error(f"Error processing query: {str(e)}")

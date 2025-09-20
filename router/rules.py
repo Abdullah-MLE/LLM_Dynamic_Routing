@@ -1,8 +1,9 @@
 import re
-from config import config
+from config import Config
 
 
 def classify_query(query):
+    config = Config()
     query_length = len(query)
 
     if query_length <= config.MAX_SIMPLE_LENGTH:
@@ -26,10 +27,12 @@ def is_simple_factual(query):
 
 
 def has_complex_keywords(query):
+    config = Config()
     query_lower = query.lower()
     return any(keyword in query_lower for keyword in config.COMPLEX_KEYWORDS)
 
 
 def has_simple_keywords(query):
+    config = Config()
     query_lower = query.lower()
     return any(keyword in query_lower for keyword in config.SIMPLE_KEYWORDS)

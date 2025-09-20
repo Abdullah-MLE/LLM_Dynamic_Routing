@@ -3,11 +3,12 @@ import json
 import os
 from datetime import datetime
 from typing import Optional, Dict, Any
-from config import config
+from config import Config
 
 
 class Cache:
     def __init__(self):
+        config = Config()
         self.enabled = config.CACHE_ENABLED
         self.cache_dir = os.path.join("data", "cache")
         self.cache_file = os.path.join(self.cache_dir, "query_cache.json")
@@ -34,9 +35,6 @@ class Cache:
         with open(self.cache_file, 'w', encoding='utf-8') as f:
             # dump(content, file path, space=2, keep non-ASCII chars)
             json.dump(self.memory_cache, f, indent=2, ensure_ascii=False)
-
-    def is_enabled(self):
-        return self.enabled
 
     def get(self, query: str) -> Optional[Dict[str, Any]]:
         if not self.enabled:

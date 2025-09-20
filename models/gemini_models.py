@@ -5,7 +5,7 @@ from google import genai
 import os
 from .base import BaseModel
 
-from config import config
+from config import Config
 
 # Load environment variables
 load_dotenv()
@@ -32,6 +32,7 @@ class GeminiModels(BaseModel):
         return genai.Client(api_key=self.api_key)
     
     def _setup_models(self):
+        config = Config()
         return {
             "simple": ModelInfo(name=config.SIMPLE_MODEL, supports_thinking=False, max_tokens=2048),
             "medium": ModelInfo(name=config.MEDIUM_MODEL, supports_thinking=False, max_tokens=4096),
