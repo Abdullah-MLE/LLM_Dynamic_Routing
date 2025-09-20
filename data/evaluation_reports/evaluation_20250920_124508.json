@@ -1,0 +1,281 @@
+{
+  "date": "2025-09-20 12:45:08",
+  "results": [
+    {
+      "test_type": "Routing System",
+      "queries_tested": 10,
+      "total_time": 289.9105372428894,
+      "average_time": 28.99105372428894,
+      "details": [
+        {
+          "query": "What is the capital of France?...",
+          "response": "Paris\n...",
+          "complexity": "simple",
+          "time": 0.6212844848632812
+        },
+        {
+          "query": "How many days are in a week?...",
+          "response": "There are 7 days in a week.\n...",
+          "complexity": "simple",
+          "time": 0.3813614845275879
+        },
+        {
+          "query": "Explain the water cycle in simple terms...",
+          "response": "Imagine water as a traveler on a never-ending jour...",
+          "complexity": "medium",
+          "time": 9.608522653579712
+        },
+        {
+          "query": "What are the main differences between Python and J...",
+          "response": "Python and Java are two of the most popular and wi...",
+          "complexity": "medium",
+          "time": 18.432934284210205
+        },
+        {
+          "query": "Describe the process of photosynthesis...",
+          "response": "Photosynthesis is the process by which green plant...",
+          "complexity": "medium",
+          "time": 13.404531717300415
+        },
+        {
+          "query": "Analyze the impact of artificial intelligence on m...",
+          "response": "Of course. Here is a detailed analysis of the impa...",
+          "complexity": "advanced",
+          "time": 32.15626621246338
+        },
+        {
+          "query": "Compare and contrast different machine learning al...",
+          "response": "Of course. Comparing and contrasting machine learn...",
+          "complexity": "advanced",
+          "time": 34.365551471710205
+        },
+        {
+          "query": "Evaluate the ethical implications of genetic engin...",
+          "response": "Of course. Evaluating the ethical implications of ...",
+          "complexity": "advanced",
+          "time": 30.930689811706543
+        },
+        {
+          "query": "What color is the sky?...",
+          "response": "The sky is typically blue, but it can also be many...",
+          "complexity": "simple",
+          "time": 0.8564212322235107
+        },
+        {
+          "query": "Synthesize the main arguments for universal basic ...",
+          "response": "Of course. Here is a synthesis of the main argumen...",
+          "complexity": "advanced",
+          "time": 29.149579763412476
+        }
+      ],
+      "accuracy": 100.0
+    },
+    {
+      "test_type": "Simple Model",
+      "queries_tested": 10,
+      "total_time": 35.64116716384888,
+      "average_time": 3.5641167163848877,
+      "details": [
+        {
+          "query": "What is the capital of France?...",
+          "response": "Paris\n...",
+          "complexity": "simple",
+          "time": 0.5931966304779053
+        },
+        {
+          "query": "How many days are in a week?...",
+          "response": "There are 7 days in a week.\n...",
+          "complexity": "simple",
+          "time": 0.721998929977417
+        },
+        {
+          "query": "Explain the water cycle in simple terms...",
+          "response": "The water cycle is like a big circle of water movi...",
+          "complexity": "simple",
+          "time": 1.4479362964630127
+        },
+        {
+          "query": "What are the main differences between Python and J...",
+          "response": "Python and Java are both popular programming langu...",
+          "complexity": "simple",
+          "time": 6.353121995925903
+        },
+        {
+          "query": "Describe the process of photosynthesis...",
+          "response": "Photosynthesis is the process by which green plant...",
+          "complexity": "simple",
+          "time": 5.265542268753052
+        },
+        {
+          "query": "Analyze the impact of artificial intelligence on m...",
+          "response": "Artificial intelligence (AI) is rapidly transformi...",
+          "complexity": "simple",
+          "time": 4.871819734573364
+        },
+        {
+          "query": "Compare and contrast different machine learning al...",
+          "response": "Machine learning algorithms can be categorized in ...",
+          "complexity": "simple",
+          "time": 7.445882558822632
+        },
+        {
+          "query": "Evaluate the ethical implications of genetic engin...",
+          "response": "The ethical implications of genetic engineering ar...",
+          "complexity": "simple",
+          "time": 4.945948839187622
+        },
+        {
+          "query": "What color is the sky?...",
+          "response": "The sky is typically blue, but it can appear many ...",
+          "complexity": "simple",
+          "time": 0.5065009593963623
+        },
+        {
+          "query": "Synthesize the main arguments for universal basic ...",
+          "response": "The main arguments for Universal Basic Income (UBI...",
+          "complexity": "simple",
+          "time": 3.4891388416290283
+        }
+      ],
+      "accuracy": null
+    },
+    {
+      "test_type": "Medium Model",
+      "queries_tested": 10,
+      "total_time": 121.99951648712158,
+      "average_time": 12.199951648712158,
+      "details": [
+        {
+          "query": "What is the capital of France?...",
+          "response": "The capital of France is **Paris**....",
+          "complexity": "medium",
+          "time": 0.9185032844543457
+        },
+        {
+          "query": "How many days are in a week?...",
+          "response": "There are **7** days in a week....",
+          "complexity": "medium",
+          "time": 0.6070501804351807
+        },
+        {
+          "query": "Explain the water cycle in simple terms...",
+          "response": "Imagine the Earth's water is on a never-ending jou...",
+          "complexity": "medium",
+          "time": 8.609629154205322
+        },
+        {
+          "query": "What are the main differences between Python and J...",
+          "response": "Python and Java are two of the most popular and po...",
+          "complexity": "medium",
+          "time": 16.38840627670288
+        },
+        {
+          "query": "Describe the process of photosynthesis...",
+          "response": "Photosynthesis is the fundamental biochemical proc...",
+          "complexity": "medium",
+          "time": 16.6875901222229
+        },
+        {
+          "query": "Analyze the impact of artificial intelligence on m...",
+          "response": "Artificial intelligence (AI) is rapidly transformi...",
+          "complexity": "medium",
+          "time": 19.04269504547119
+        },
+        {
+          "query": "Compare and contrast different machine learning al...",
+          "response": "Machine learning (ML) algorithms are the engines t...",
+          "complexity": "medium",
+          "time": 21.938688039779663
+        },
+        {
+          "query": "Evaluate the ethical implications of genetic engin...",
+          "response": "Genetic engineering, with its power to modify the ...",
+          "complexity": "medium",
+          "time": 20.891106128692627
+        },
+        {
+          "query": "What color is the sky?...",
+          "response": "The sky is most commonly **blue** during the day w...",
+          "complexity": "medium",
+          "time": 5.92479395866394
+        },
+        {
+          "query": "Synthesize the main arguments for universal basic ...",
+          "response": "Universal Basic Income (UBI) is a concept that has...",
+          "complexity": "medium",
+          "time": 10.990976572036743
+        }
+      ],
+      "accuracy": null
+    },
+    {
+      "test_type": "Advanced Model",
+      "queries_tested": 10,
+      "total_time": 996.5430271625519,
+      "average_time": 99.65430271625519,
+      "details": [
+        {
+          "query": "What is the capital of France?...",
+          "response": "The capital of France is **Paris**....",
+          "complexity": "advanced",
+          "time": 4.329521417617798
+        },
+        {
+          "query": "How many days are in a week?...",
+          "response": "There are **seven** days in a week.\n\nThey are:\n1. ...",
+          "complexity": "advanced",
+          "time": 5.687467813491821
+        },
+        {
+          "query": "Explain the water cycle in simple terms...",
+          "response": "Of course! Here is the water cycle explained in si...",
+          "complexity": "advanced",
+          "time": 18.64438247680664
+        },
+        {
+          "query": "What are the main differences between Python and J...",
+          "response": "Of course. This is a classic and important questio...",
+          "complexity": "advanced",
+          "time": 31.00975465774536
+        },
+        {
+          "query": "Describe the process of photosynthesis...",
+          "response": "Of course! Here is a detailed description of the p...",
+          "complexity": "advanced",
+          "time": 25.464416980743408
+        },
+        {
+          "query": "Analyze the impact of artificial intelligence on m...",
+          "response": "Of course. Here is a comprehensive analysis of the...",
+          "complexity": "advanced",
+          "time": 31.27406072616577
+        },
+        {
+          "query": "Compare and contrast different machine learning al...",
+          "response": "Of course. Comparing and contrasting machine learn...",
+          "complexity": "advanced",
+          "time": 41.4887170791626
+        },
+        {
+          "query": "Evaluate the ethical implications of genetic engin...",
+          "response": "Of course. Evaluating the ethical implications of ...",
+          "complexity": "advanced",
+          "time": 31.22618055343628
+        },
+        {
+          "query": "What color is the sky?...",
+          "response": "That's an excellent and surprisingly deep question...",
+          "complexity": "advanced",
+          "time": 18.018268823623657
+        },
+        {
+          "query": "Synthesize the main arguments for universal basic ...",
+          "response": "Of course. Here is a synthesis of the main argumen...",
+          "complexity": "advanced",
+          "time": 27.388134002685547
+        }
+      ],
+      "accuracy": null
+    }
+  ]
+}
