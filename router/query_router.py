@@ -17,7 +17,10 @@ class QueryRouter:
         elif self.config.MODEL_PROVIDER == "mock":
             self.model = MockModel()
         else:
-            raise ValueError("Unknown model provider: ", self.config.MODEL_PROVIDER)
+            raise ValueError(
+                "Unknown model provider: ",
+                self.config.MODEL_PROVIDER
+            )
 
     def route_query_and_return_response(self, query, use_cache=True):
         cached_result = self._check_cache(query, use_cache)
@@ -26,6 +29,8 @@ class QueryRouter:
 
         complexity = classify_query(query)
         model_level = complexity
+        # send the model level based on complexity and return the model used
+        # in case of fallback
         response, model = self._get_response_with_fallback(
             query,
             model_level,
@@ -64,7 +69,8 @@ class QueryRouter:
             }
         return None
 
-    def _cache_response(self, query: str, response: str, model_name: str, complexity: str, use_cache: bool):
+    def _cache_response(self, query: str, response: str, model_name: str,
+                        complexity: str, use_cache: bool):
         if use_cache and self.cache.enabled:
             self.cache.set(
                 query=query,
@@ -73,29 +79,38 @@ class QueryRouter:
                 complexity=complexity
             )
 
-    def _get_response_with_fallback(self, query: str, model_level: str, complexity: str, retries: int = 0):
-        try:
-            response = self.model.generate(query, model_level)
+    def _get_response_with_fallback(self, query: str, model_level: str,
+                                    complexity: str, retries: int = 0):
+        response = self.model.generate(query, model_level)
 
-            if self._is_response_valid(response):
-                return response, self._get_model_name(model_level)
-
-            if self.config.FALLBACK_ENABLED and retries < self.config.MAX_RETRIES:
-                return self._try_fallback(query, model_level, complexity, retries)
-
+        # Check if response is valid
+        if self._is_response_valid(response):
+            # If valid, return response and model name
             return response, self._get_model_name(model_level)
 
-        except Exception as e:
-            if self.config.FALLBACK_ENABLED and retries < self.config.MAX_RETRIES:
-                print(f"Error with {model_level} model: {str(e)}. Trying fallback...")
-                return self._try_fallback(query, model_level, complexity, retries)
+        # If not valid, check if fallback is enabled and retries are left
+        elif (
+            self.config.FALLBACK_ENABLED
+            and retries < self.config.MAX_RETRIES
+        ):
+            return self._try_fallback(query, model_level, complexity, retries)
 
-            raise Exception(f"All models failed. Last error: {str(e)}")
+        # If no fallback, return the (invalid) response and model name
+        return response, self._get_model_name(model_level)
 
     def _is_response_valid(self, response: str):
-        return len(response.strip()) > 0
+        if not response or len(response.strip()) < 5:
+            return False
 
-    def _try_fallback(self, query: str, current_level: str, complexity: str, retries: int):
+        # Check if response starts with any invalid phrases
+        for phrase in self.config.INVALID_PHRASES:
+            if response.startswith(phrase):
+                return False
+
+        return True
+
+    def _try_fallback(self, query: str, current_level: str,
+                      complexity: str, retries: int):
         upgrade_map = {
             "simple": "medium",
             "medium": "advanced"
@@ -106,7 +121,12 @@ class QueryRouter:
             raise Exception(f"No fallback available for {current_level} model")
 
         print(f"Upgrading from {current_level} to {next_level} model...")
-        return self._get_response_with_fallback(query, next_level, complexity, retries + 1)
+        return self._get_response_with_fallback(
+            query,
+            next_level,
+            complexity,
+            retries + 1
+        )
 
     def _get_model_name(self, model_level: str):
         model_names = {
