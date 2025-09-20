@@ -195,17 +195,19 @@ class DynamicRoutingUI:
         report_path = os.path.join(reports_dir, selected_report)
 
         try:
-            with open(report_path, 'r', encoding='utf-8') as f:
-                report_content = f.read()
-
             st.subheader(f"Report: {selected_report}")
-            st.text(report_content)
+            if selected_report.lower().endswith(".json"):
+                with open(report_path, 'r', encoding='utf-8') as f:
+                    report_json = json.load(f)
+                st.json(report_json)
+            else:
+                with open(report_path, 'r', encoding='utf-8') as f:
+                    report_content = f.read()
+                st.text(report_content)
 
             # Report metadata
             file_stats = os.stat(report_path)
-            st.caption(f"Last modified: {datetime.fromtimestamp(
-                file_stats.st_mtime
-            )}")
+            st.caption(f"Last modified: {datetime.fromtimestamp(file_stats.st_mtime)}")
 
         except Exception as e:
             st.error(f"Error reading report: {str(e)}")
