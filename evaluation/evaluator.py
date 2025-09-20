@@ -30,10 +30,10 @@ class Evaluator:
     def test_system(self, router):
         queries = self._get_test_set()
         results = []
-        
+
         print("Testing Routing System...")
         start_time = time.time()
-        
+
         for query_data in queries:
             query = query_data["text"]
             query_start = time.time()
@@ -55,11 +55,11 @@ class Evaluator:
             if response["complexity"] == "advanced":
                 print("Waiting 30 seconds for advanced model rate limit...")
                 time.sleep(30)
-        
+
         total_time = time.time() - start_time
-        
+
         accuracy = self._calculate_accuracy(queries, results)
-        
+
         return {
             "test_type": "Routing System",
             "queries_tested": len(queries),
@@ -72,10 +72,10 @@ class Evaluator:
     def test_single_model(self, router, model_level):
         queries = self._get_test_set()
         results = []
-        
+
         print(f"Testing {model_level.title()} Model...")
         start_time = time.time()
-        
+
         for query_data in queries:
             query = query_data["text"]
             query_start = time.time()
@@ -93,9 +93,9 @@ class Evaluator:
             if model_level == "advanced":
                 print("Waiting 30 seconds for advanced model rate limit...")
                 time.sleep(30)
-        
+
         total_time = time.time() - start_time
-        
+
         return {
             "test_type": f"{model_level.title()} Model",
             "queries_tested": len(queries),
@@ -109,17 +109,17 @@ class Evaluator:
         print("="*60)
         print("EVALUATION START")
         print("="*60)
-        
+
         all_results = []
-        
+
         all_results.append(self.test_system(router))
-        
+
         for level in ["simple", "medium", "advanced"]:
             all_results.append(self.test_single_model(router, level))
-        
+
         self._print_results(all_results)
         self._save_results(all_results)
-        
+
         print("="*60)
         print("EVALUATION COMPLETE")
         print("="*60)
@@ -127,13 +127,16 @@ class Evaluator:
     def _print_results(self, results):
         print("RESULTS SUMMARY")
         print("-"*40)
-        
+
         for result in results:
             print(f"{result['test_type']}:")
             print(f"  Queries: {result['queries_tested']}")
             print(f"  Total Time: {result['total_time']:.2f}s")
             print(f"  Average Time: {result['average_time']:.2f}s")
-            accuracy_text = f"{result['accuracy']:.1f}%" if result['accuracy'] is not None else "N/A"
+            accuracy_text = (
+                f"{result['accuracy']:.1f}%"
+                if result['accuracy'] is not None else "N/A"
+            )
             print(f"  Accuracy: {accuracy_text}")
 
         routing_avg = results[0]["average_time"]
@@ -167,7 +170,7 @@ class Evaluator:
     def stop_timer(self):
         if self.start_time is None:
             return 0.0
-        
+
         elapsed = time.time() - self.start_time
         self.start_time = None
         return elapsed
