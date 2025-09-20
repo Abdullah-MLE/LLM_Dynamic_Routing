@@ -172,7 +172,6 @@ class DynamicRoutingUI:
         # Get latest report
         report_files = [
             f for f in os.listdir(reports_dir)
-            if f.endswith('.txt')
         ]
 
         if not report_files:
