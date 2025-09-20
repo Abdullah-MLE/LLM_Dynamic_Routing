@@ -207,7 +207,9 @@ class DynamicRoutingUI:
 
             # Report metadata
             file_stats = os.stat(report_path)
-            st.caption(f"Last modified: {datetime.fromtimestamp(file_stats.st_mtime)}")
+            st.caption(f"Last modified: {datetime.fromtimestamp(
+                file_stats.st_mtime
+            )}")
 
         except Exception as e:
             st.error(f"Error reading report: {str(e)}")
