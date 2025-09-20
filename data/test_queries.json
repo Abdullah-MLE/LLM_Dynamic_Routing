@@ -1,0 +1,38 @@
+{
+  "simple": [
+    "What is the capital of France?",
+    "How many days are in a week?",
+    "What color is the sky?",
+    "Who invented the telephone?",
+    "What is 2+2?",
+    "When did World War II end?",
+    "What is the largest ocean?",
+    "How many continents are there?",
+    "What is water made of?",
+    "Who wrote Romeo and Juliet?"
+  ],
+  "medium": [
+    "Explain the water cycle in simple terms",
+    "What are the main differences between Python and Java?",
+    "Describe the process of photosynthesis",
+    "How does a computer store data?",
+    "What causes seasons to change?",
+    "List the pros and cons of renewable energy",
+    "How do vaccines work in the human body?",
+    "What are the basic principles of economics?",
+    "Explain how the internet works",
+    "Describe the solar system and its planets"
+  ],
+  "advanced": [
+    "Analyze the impact of artificial intelligence on modern society and future employment",
+    "Compare and contrast different machine learning algorithms for classification tasks",
+    "Evaluate the ethical implications of genetic engineering in humans",
+    "Discuss the relationship between quantum mechanics and general relativity",
+    "Synthesize the main arguments for and against universal basic income",
+    "Interpret the significance of the Renaissance on Western civilization",
+    "Critique the current approaches to addressing climate change globally",
+    "Theorize about the potential consequences of faster-than-light travel",
+    "Analyze the complexity of P vs NP problem in computer science",
+    "Evaluate different philosophical approaches to consciousness and free will"
+  ]
+}

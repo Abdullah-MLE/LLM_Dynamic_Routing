@@ -1,0 +1,42 @@
+SYSTEM EVALUATION REPORT
+============================================================
+Date: 2025-09-20 04:47:54
+Total queries tested: 10
+
+Query Distribution:
+  advanced: 4
+  simple: 3
+  medium: 3
+
+Test Results:
+----------------------------------------
+
+Normal (Cache ON):
+  Average Time: 0.540s
+  Total Time: 5.398s
+  Accuracy: 80.0%
+  Cache Hit Rate: 90.0%
+
+Normal (Cache OFF):
+  Average Time: 17.590s
+  Total Time: 175.903s
+  Accuracy: 80.0%
+
+Advanced Model Only:
+  Average Time: 25.507s
+  Total Time: 255.069s
+
+Medium Model Only:
+  Average Time: 12.985s
+  Total Time: 129.855s
+
+Simple Model Only:
+  Average Time: 4.072s
+  Total Time: 40.715s
+
+Performance Analysis:
+----------------------------------------
+Cache Improvement: 96.9% faster
+Routing Savings: 31.0% faster than always using advanced model
+
+============================================================
