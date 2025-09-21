@@ -1,6 +1,6 @@
 import os
 import sys
-from router.query_router import QueryRouter
+from router.query_router import router
 from models.gemini_models import GeminiModels
 from evaluation.evaluator import Evaluator
 from config import Config
@@ -16,7 +16,7 @@ sys.path.insert(
 class DynamicRoutingApp:
     def __init__(self):
         self.config = Config()
-        self.router = QueryRouter()
+        self.router = router
         self.evaluator = Evaluator()
         self.running = True
 

@@ -3,7 +3,7 @@ import json
 import os
 from datetime import datetime
 
-from router.query_router import QueryRouter
+from router.query_router import router
 from evaluation.evaluator import Evaluator
 from config import Config
 
@@ -12,7 +12,7 @@ class DynamicRoutingUI:
     def __init__(self):
         """Initialize the UI components"""
         self.config = Config()
-        self.router = QueryRouter()
+        self.router = router
         self.evaluator = Evaluator()
         self.setup_page_config()
 
@@ -38,14 +38,14 @@ class DynamicRoutingUI:
 
         if model_provider != self.config.MODEL_PROVIDER:
             self.config.MODEL_PROVIDER = model_provider
-            self.router = QueryRouter()
+            self.router = router
             st.sidebar.success(f"Switched to {model_provider} mode")
 
         # Model Level Selection
         st.sidebar.subheader("Model Level")
         model_level = st.sidebar.selectbox(
             "Select Model Level",
-            ["auto", "simple", "medium", "advanced"],
+            ["Router", "simple", "medium", "advanced"],
             index=0
         )
 
@@ -84,11 +84,8 @@ class DynamicRoutingUI:
         with col1:
             send_button = st.button("Send Query", type="primary")
 
-        with col2:
-            show_details = st.checkbox("Show Response Details")
-
         # Process query
-        if send_button and query.strip():
+        if query.strip():
             with st.spinner("Processing query..."):
                 try:
                     # Start timing
@@ -128,29 +125,28 @@ class DynamicRoutingUI:
                     st.subheader("Response:")
                     st.write(result["response"])
 
-                    # Details if requested
-                    if show_details:
-                        st.subheader("Response Details:")
+                    # Details
+                    st.subheader("Response Details:")
 
-                        details_col1, details_col2 = st.columns(2)
+                    details_col1, details_col2 = st.columns(2)
 
-                        with details_col1:
-                            st.write(f"**Query:** {result['query']}")
-                            st.write(f"**Complexity:** {result['complexity']}")
-                            st.write(f"**Model Used:** {result['model_name']}")
-                            level_mode = (
-                                'Auto' if model_level == 'auto' else 'Manual'
-                            )
-                            st.write(f"**Level Mode:** {level_mode}")
+                    with details_col1:
+                        st.write(f"**Query:** {result['query']}")
+                        st.write(f"**Complexity:** {result['complexity']}")
+                        st.write(f"**Model Used:** {result['model_name']}")
+                        level_mode = (
+                            'Auto' if model_level == 'auto' else 'Manual'
+                        )
+                        st.write(f"**Level Mode:** {level_mode}")
 
-                        with details_col2:
-                            from_cache = 'Yes' if result['cached'] else 'No'
-                            st.write(f"**From Cache:** {from_cache}")
-                            st.write(f"**Processing Time:** {elapsed:.3f}s")
-                            st.write(
-                                f"**Response Length:** "
-                                f"{len(result['response'])} characters"
-                            )
+                    with details_col2:
+                        from_cache = 'Yes' if result['cached'] else 'No'
+                        st.write(f"**From Cache:** {from_cache}")
+                        st.write(f"**Processing Time:** {elapsed:.3f}s")
+                        st.write(
+                            f"**Response Length:** "
+                            f"{len(result['response'])} characters"
+                        )
 
                 except Exception as e:
                     st.error(f"Error processing query: {str(e)}")

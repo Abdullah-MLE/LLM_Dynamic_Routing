@@ -2,10 +2,11 @@ from router.rules import classify_query
 from router.cache import Cache
 from models.gemini_models import GeminiModels
 from models.mock_model import MockModel
+from models.router_model import RouterModel
 from config import Config
 
 
-class QueryRouter:
+class RuleRouter:
 
     def __init__(self):
         self.config = Config()
@@ -137,8 +138,25 @@ class QueryRouter:
         return model_names.get(model_level, self.config.SIMPLE_MODEL)
 
 
+class LLMِsRouter:
+    def __init__(self):
+        self.config = Config()
+        self.model = RouterModel()
+
+
 if __name__ == "__main__":
-    router = QueryRouter()
+    if Config().ROUTE_METHOD == "Rule-Based":
+        router = router()
+    elif Config().ROUTE_METHOD == "LLM-as-a-Router":
+        router = LLMِsRouter()
+
     test_query = "What is the capital of France?"
     result = router.route_query_and_return_response(test_query)
     print(result)
+
+
+router = RuleRouter()
+if Config().ROUTE_METHOD == "Rule-Based":
+    router = RuleRouter()
+elif Config().ROUTE_METHOD == "LLM-as-a-Router":
+    router = LLMِsRouter()

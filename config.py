@@ -5,8 +5,12 @@ class Config:
     def __init__(self):
         load_dotenv()
 
-        self.MODEL_PROVIDER = "gemini"  # Options: "gemini", "mock"
+        # Options: "gemini", "mock"
+        self.MODEL_PROVIDER = "gemini"
         self.MODEL_LEVELS = ["simple", "medium", "advanced"]
+
+        # Options: "Rule-Based", "LLM-as-a-Router"
+        self.ROUTE_METHOD = "Rule-Based"
 
         self.SIMPLE_MODEL = "gemini-1.5-flash-latest"
         self.MEDIUM_MODEL = "gemini-2.5-flash"
