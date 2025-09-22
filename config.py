@@ -16,10 +16,13 @@ class Config:
         self.MEDIUM_MODEL = "gemini-2.5-flash"
         self.ADVANCED_MODEL = "gemini-2.5-pro"
 
+        self.LLM_ROUTE_MODEL = "gemini-1.5-flash-002"
+        # self.LLM_ROUTE_MODEL_BACKUP = "gemini-1.5-flash-latest"
+
         self.MAX_SIMPLE_LENGTH = 50
         self.MAX_MEDIUM_LENGTH = 200
 
-        self.CACHE_ENABLED = False
+        self.CACHE_ENABLED = True
         self.FALLBACK_ENABLED = True
         self.MAX_RETRIES = 2
 

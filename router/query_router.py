@@ -146,7 +146,7 @@ class LLMِsRouter:
 
 if __name__ == "__main__":
     if Config().ROUTE_METHOD == "Rule-Based":
-        router = router()
+        router = RuleRouter()
     elif Config().ROUTE_METHOD == "LLM-as-a-Router":
         router = LLMِsRouter()
 

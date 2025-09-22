@@ -54,10 +54,6 @@ class GeminiModels(BaseModel):
 
         return response.text
 
-    def get_model_name(self, level: str):
-        model_info = self._get_model_info(level)
-        return model_info.name
-
     def Print_all_available_Gemini_models(self):
         models = self.client.models.list()
         for model in models:

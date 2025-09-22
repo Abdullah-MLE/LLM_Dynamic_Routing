@@ -17,6 +17,3 @@ class MockModel(BaseModel):
             "advanced": f"Advanced mock response with comprehensive "
                         f"analysis for: {text}"
         }.get(level, "Unknown model level")
-
-    def get_model_name(self, level: str):
-        return self.models.get(level, "mock-simple")

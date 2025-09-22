@@ -77,9 +77,17 @@ class DynamicRoutingApp:
 
 
 def main():
-    app = DynamicRoutingApp()
-    app.run()
+    # app = DynamicRoutingApp()
+    # app.run()
+    from models.router_model import RouterModel
+    model = RouterModel()
+    response = model.classify_difficulty(
+        """
+            what is 2+2
+        """)
+    print(f"Response: {response}")
 
 
 if __name__ == "__main__":
+
     main()
